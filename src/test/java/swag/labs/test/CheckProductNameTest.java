@@ -1,6 +1,6 @@
 package swag.labs.test;
 
-import jsonFilesParser.JSONManagement;
+import DataProviderClasses.ValidLoginDataProvider;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageClasses.LoginPage;
@@ -13,19 +13,15 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class CheckProductNameTest extends BaseTest{
     LoginPage loginPage;
-    String username;
-    String password;
+
 
     @BeforeMethod
     public void setUp() throws IOException {
         loginPage = new LoginPage(driver, wait);
-
-        username = JSONManagement.readProperty("username");
-
-        password = JSONManagement.readProperty("password");
     }
-    @Test
-    public void testCheckProductName() {
+
+    @Test (dataProvider = "getValidLoginTestData", dataProviderClass = ValidLoginDataProvider.class)
+    public void testCheckProductName(String baseURL, String username, String password, String successLoginURL) {
 
         PLPPage plpPage = loginPage.loginUser(username, password);
         String productNamePLP = plpPage.getProductName();

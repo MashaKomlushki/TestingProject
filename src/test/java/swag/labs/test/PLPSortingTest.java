@@ -1,5 +1,5 @@
 package swag.labs.test;
-import jsonFilesParser.JSONManagement;
+import DataProviderClasses.ValidLoginDataProvider;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,24 +13,12 @@ public class PLPSortingTest extends BaseTest{
 
     LoginPage loginPage;
 
-    String username;
-
-    String password;
-
-
     @BeforeMethod
     public void setUp() throws IOException {
         loginPage = new LoginPage(driver, wait);
-
-        username = JSONManagement.readProperty("username");
-
-        password = JSONManagement.readProperty("password");
-
-
-
     }
-    @Test
-    public void testPLPSorting() {
+    @Test (dataProvider = "getValidLoginTestData", dataProviderClass = ValidLoginDataProvider.class)
+    public void testPLPSorting(String baseURL, String username, String password, String successLoginURL) {
 
         PLPPage plpPage = loginPage.loginUser(username,password);
         List<Double> unsortedProductPrices = plpPage.getProductPrices();

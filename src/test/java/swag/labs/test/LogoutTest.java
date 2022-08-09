@@ -1,5 +1,5 @@
 package swag.labs.test;
-import jsonFilesParser.JSONManagement;
+import DataProviderClasses.ValidLoginDataProvider;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageClasses.LoginPage;
@@ -10,27 +10,15 @@ import static org.testng.Assert.*;
 public class LogoutTest extends BaseTest{
     LoginPage loginPage;
 
-    String username;
-
-    String password;
-
-    String baseURL;
 
 
     @BeforeMethod
     public void setUp() throws IOException {
         loginPage = new LoginPage(driver, wait);
-
-        username = JSONManagement.readProperty("username");
-
-        password = JSONManagement.readProperty("password");
-
-        baseURL = JSONManagement.readProperty("baseURL");
-
     }
 
-    @Test
-    public void testLogoutUser() throws IOException {
+    @Test (dataProvider = "getValidLoginTestData", dataProviderClass = ValidLoginDataProvider.class)
+    public void testLogoutUser(String baseURL, String username, String password, String successLoginURL) throws IOException {
 
         PLPPage plpPage = loginPage.loginUser(username,password);
 

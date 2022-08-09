@@ -1,55 +1,38 @@
 package swag.labs.test;
-
-import jsonFilesParser.JSONManagement;
-
-import static org.testng.Assert.*;
-
+import DataProviderClasses.ValidLoginDataProvider;
+import DataProviderClasses.InvalidLoginDataProvider;
 import org.testng.annotations.BeforeMethod;
-
 import org.testng.annotations.Test;
-
 import pageClasses.LoginPage;
-
 import java.io.IOException;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-public class LoginTest extends BaseTest {
 
+public class LoginTest extends BaseTest{
     LoginPage loginPage;
 
-    String username;
-
-    String password;
-
-    String successLoginURL;
-
-    String emptyUsername;
 
     @BeforeMethod
     public void setUp() throws IOException {
         loginPage = new LoginPage(driver, wait);
 
-        username = JSONManagement.readProperty("username");
-
-        password = JSONManagement.readProperty("password");
-
-        successLoginURL = JSONManagement.readProperty("successLoginURL");
-
-        emptyUsername = "";
     }
 
-    @Test
-    public void testValidLogin()  {
+    @Test (dataProvider = "getValidLoginTestData", dataProviderClass = ValidLoginDataProvider.class)
+    public void testValidLogin(String baseURL, String username, String password, String successLoginURL)  {
 
         loginPage.loginUser(username, password);
 
         assertEquals(successLoginURL, loginPage.getCurrentUrl());
     }
 
-    @Test
-    public void testInvalidLogin()  {
+    @Test (dataProvider = "getInvalidLoginTestData", dataProviderClass = InvalidLoginDataProvider.class)
+    public void testInvalidLogin(String emptyUsername, String password)  {
 
         loginPage.loginUser(emptyUsername, password);
 
         assertTrue(loginPage.isInvalidLoginErrorMessageDisplayed());
     }
 }
+

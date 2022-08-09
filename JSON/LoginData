@@ -1,10 +1,13 @@
 {
   "baseURL": "https://www.saucedemo.com/",
   "username": "standard_user",
+  "emptyUsername": "",
   "password": "secret_sauce",
   "firstName": "Masha",
   "lastName": "Tester",
   "postalCode": "11000",
   "successLoginURL": "https://www.saucedemo.com/inventory.html",
-  "successCheckoutURL": "https://www.saucedemo.com/checkout-complete.html"
+  "successCheckoutURL": "https://www.saucedemo.com/checkout-complete.html",
+  "backpackName": "item_4_title_link",
+  "backpackID": "add-to-cart-sauce-labs-backpack"
 }
