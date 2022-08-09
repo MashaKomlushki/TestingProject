@@ -1,11 +1,8 @@
 package pageClasses;
-
-
 import jsonFilesParser.JSONManagement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.IOException;
 
 public class LoginPage extends BasePage {

@@ -2,14 +2,11 @@ package swag.labs.test;
 
 import jsonFilesParser.JSONManagement;
 import static org.testng.Assert.*;
-
-import org.openqa.selenium.devtools.v101.domstorage.model.Item;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageClasses.*;
-
 import java.io.IOException;
-import java.util.List;
+
 
 public class CheckoutTest extends BaseTest{
 
@@ -41,22 +38,18 @@ public class CheckoutTest extends BaseTest{
     }
 
     @Test
-    public void testCheckout() throws IOException {
+    public void testCheckout()  {
 
-        PLPPage plpPage = loginPage.loginUser(username,password);
-        String productNamePLP = plpPage.getProductName();
-        //List<String> itemsToBuy = jsonFileParser.parse("items_for_cart.json");
-        YourCartPage yourCartPage = plpPage.addToCart(itemsToBuy);
-        String productNameCart = yourCartPage.getProductName();
-        assertEquals(productNamePLP, productNameCart);
-        CheckoutInformationPage checkoutInformationPage = yourCartPage.goToCheckout();
-        checkoutInformationPage.continueToCheckout(firstName,lastName,postalCode);
-        CheckoutOverviewPage checkoutOverviewPage = new CheckoutOverviewPage(driver, wait);
-        checkoutOverviewPage.finishCheckout();
-        CheckoutCompletePage checkoutCompletePage = new CheckoutCompletePage(driver, wait);
-        assertEquals(successCheckoutURL, checkoutCompletePage.getCurrentUrl());
+        String checkoutCompleteUrl = loginPage
+                .loginUser(username,password)
+                .addToCartBackpack()
+                .goToCheckout()
+                .fillInformationAndContinueToCheckout(firstName,lastName,postalCode)
+                .finishCheckout()
+                .getCurrentUrl();
 
-
-
+        assertEquals(checkoutCompleteUrl,successCheckoutURL);
     }
 }
+
+

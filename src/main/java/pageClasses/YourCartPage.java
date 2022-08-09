@@ -19,12 +19,11 @@ public class YourCartPage extends BasePage{
 
     public CheckoutInformationPage goToCheckout(){
         driver.findElement(checkoutButton).click();
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(CheckoutInformationPage.checkoutYourInformation));
         return new CheckoutInformationPage(driver, wait);
     }
-    public void goToContinueShopping(){
+    public PLPPage goToContinueShopping(){
         driver.findElement(continueShopping).click();
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(PLPPage.sauceLabsBackpack));
+        return new PLPPage(driver, wait);
     }
     public void removeFromCart(){
         driver.findElement(removeButton).click();

@@ -1,12 +1,10 @@
 package swag.labs.test;
-
 import jsonFilesParser.JSONManagement;
 import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageClasses.LoginPage;
 import pageClasses.PLPPage;
-
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;

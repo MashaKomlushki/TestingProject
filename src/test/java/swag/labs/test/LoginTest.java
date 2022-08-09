@@ -38,7 +38,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void testValidLogin() throws IOException {
+    public void testValidLogin()  {
 
         loginPage.loginUser(username, password);
 
@@ -46,7 +46,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void testInvalidLogin() throws IOException {
+    public void testInvalidLogin()  {
 
         loginPage.loginUser(emptyUsername, password);
 

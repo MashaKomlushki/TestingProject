@@ -1,13 +1,10 @@
 package swag.labs.test;
-
 import jsonFilesParser.JSONManagement;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pageClasses.LoginPage;
 import pageClasses.PLPPage;
-
 import java.io.IOException;
-
 import static org.testng.Assert.*;
 
 public class LogoutTest extends BaseTest{

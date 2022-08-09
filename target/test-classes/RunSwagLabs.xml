@@ -21,6 +21,12 @@
         </classes>
     </test>
 
+    <test name="CheckProductName">
+        <classes>
+            <class name="swag.labs.test.CheckProductNameTest"/>
+        </classes>
+    </test>
+
     <test name="Checkout">
         <classes>
             <class name="swag.labs.test.CheckoutTest"/>
