@@ -1,11 +1,13 @@
 package swag.labs.test;
+
 import DataProviderClasses.CheckoutDataProvider;
-import static org.testng.Assert.*;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageClasses.*;
+import pageClasses.LoginPage;
+
 import java.io.IOException;
 
+import static org.testng.Assert.assertEquals;
 
 public class CheckoutTest extends BaseTest{
 
@@ -17,13 +19,13 @@ public class CheckoutTest extends BaseTest{
         loginPage = new LoginPage(driver, wait);
     }
 
-    @Test (dataProvider = "getCheckoutTestData", dataProviderClass = CheckoutDataProvider.class)
-    public void testCheckout(String username,String password, String firstName,
+    @Test(dataProvider = "getCheckoutTestData", dataProviderClass = CheckoutDataProvider.class)
+    public void testCheckout(String username,String password, String itemToBuyID, String firstName,
                              String lastName, String postalCode, String successCheckoutURL)  {
 
         String checkoutCompleteUrl = loginPage
                 .loginUser(username,password)
-                .addToCartBackpack()
+                .addToCart(itemToBuyID)
                 .goToCheckout()
                 .fillInformationAndContinueToCheckout(firstName,lastName,postalCode)
                 .finishCheckout()

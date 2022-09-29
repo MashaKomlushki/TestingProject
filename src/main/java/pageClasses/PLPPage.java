@@ -6,6 +6,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class PLPPage extends BasePage{
@@ -19,7 +20,7 @@ public class PLPPage extends BasePage{
     private final By cartButton = By.id("shopping_cart_container");
     private final By logoutButton = By.id("logout_sidebar_link");
 
-
+    String itemToBuy;
 
 
     public PLPPage(WebDriver driver, WebDriverWait wait)  {
@@ -35,7 +36,7 @@ public class PLPPage extends BasePage{
     }
 
     public String getProductName (){
-        driver.findElement(sauceLabsBackpack).getText();
+        //driver.findElement("").getText();
         return driver.findElement(sauceLabsBackpack).getText();
     }
 
@@ -45,13 +46,12 @@ public class PLPPage extends BasePage{
         return  new YourCartPage(driver, wait);
     }
 
-    public YourCartPage addToCart(List<String> itemsToBuy){
-        for(String itemToBuy: itemsToBuy){
+    /*public YourCartPage addToCart(Collection<String> itemsToBuy) {
+        for (String itemToBuy : itemsToBuy) {
             driver.findElement(By.id(itemToBuy)).click();
         }
-        return new YourCartPage(driver,wait);
 
-    }
+        return new YourCartPage(driver, wait); */
 
 
 
@@ -75,6 +75,13 @@ public class PLPPage extends BasePage{
 
     public String getCurrentUrl(){
         return driver.getCurrentUrl();
+    }
+
+
+    public YourCartPage addToCart(String itemToBuyID) {
+        driver.findElement(By.id(itemToBuyID)).click();
+        driver.findElement(cartButton).click();
+     return new YourCartPage(driver, wait);
     }
 }
 

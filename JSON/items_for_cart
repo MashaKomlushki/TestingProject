@@ -1,6 +1,7 @@
 {
   "backpackName": "item_4_title_link",
-  "backpackAdd": "add-to-cart-sauce-labs-backpack",
+  "itemToBuyName": "Sauce Labs Backpack",
+  "itemToBuyID": "add-to-cart-sauce-labs-backpack",
   "bikeLightName": "item_0_title_link",
   "bikeLightAdd": "add-to-cart-sauce-labs-bike-light",
   "boltTShirtName": "item_1_title_link",
